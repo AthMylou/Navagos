@@ -1,0 +1,19 @@
+{% extends 'navagos_main/base.html' %}
+
+{% block content %}
+
+<p>Questions</p>
+
+<ul>
+    {% for question in questions %}
+        <li>
+            {{ question }}
+        </li>
+        {% empty %}
+            <li>
+                No questions have been added yet.
+            </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
