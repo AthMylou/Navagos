@@ -2,18 +2,21 @@
 
 {% block content %}
 
-<p>Questions</p>
+<p>Question: {{ question }}</p>
+
+<p>Answers:</p>
+
+<br/>
 
 <ul>
-    {% for question in questions %}
+    {% for answer in question_answers %}
         <li>
-            <a href="{{ question.id }}">{{ question }}</a>
+            {{ answer }}
         </li>
         {% empty %}
             <li>
-                No questions have been added yet.
+                No answers have been added yet.
             </li>
     {% endfor %}
 </ul>
-
 {% endblock content %}

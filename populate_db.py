@@ -1,6 +1,7 @@
 import os
 import json
 import sys
+from hashlib import md5
 
 # Add the project directory to the Python path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -34,11 +35,13 @@ def load_data_from_json(file_path):
             
             # Associate correct answer with question
             correct_answer = item["correct"]
-            #question_answer = QuestionAnswer.objects.create(question=question, answer=correct_answer, value=True)
+            
             
             # Set other answers as incorrect
             for answer in answers:
-                if answer != correct_answer:
+                answer_text = answer.answer_text
+                answer_hash = md5(answer_text.encode()).hexdigest()
+                if answer_hash != correct_answer:
                     QuestionAnswer.objects.create(question=question, answer=answer, value=False)
                 else:
                     QuestionAnswer.objects.create(question=question, answer=answer, value=True)

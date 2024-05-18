@@ -17,6 +17,10 @@
         {% endfor %}
       {% endif %}
       
+
+      <a href= "{% url 'navagos_main:questions' %}"> Questions </a> - <a href= "{% url 'navagos_main:about' %}"> About </a> - <a href= "{% url 'navagos_main:index' %}"> Home </a>
+      <br/>
+      <br/>
       {% block content %} 
       {% endblock content %}
     </div>

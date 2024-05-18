@@ -40,7 +40,7 @@ class Answer(models.Model):
 class QuestionAnswer(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE, default=None)
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
-    value = models.BinaryField()
+    value = models.BooleanField()
 
 
 class Test(models.Model):
