@@ -1,0 +1,22 @@
+{% extends 'navagos_main/base.html' %}
+
+{% block content %}
+
+<p>Category: {{ category }}</p>
+
+<p>Questions:</p>
+
+<br/>
+
+<ul>
+    {% for question in category_questions %}
+        <li>
+            <a href=" {% url 'navagos_main:question' question.id %}">{{ question }}</a>
+        </li>
+        {% empty %}
+            <li>
+                No questions have been added yet.
+            </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

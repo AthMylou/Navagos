@@ -2,14 +2,14 @@
 
 {% block content %}
 
-<p>Question: {{ question }}</p>
+<h1>Question:</h1> {{ question }}
 
-<p>Answers:</p>
+<h2>Answers:</h2>
 
 <br/>
 
 <ul>
-    {% for answer in question_answers %}
+    {% for answer in answers %}
         <li>
             {{ answer }}
         </li>
@@ -19,4 +19,6 @@
             </li>
     {% endfor %}
 </ul>
+<br/>
+<h3>Correct Answer:</h3> {{ correct_answer }}
 {% endblock content %}

@@ -13,6 +13,10 @@ urlpatterns = [
 
     path('about/', views.about, name = 'about'),
     
+    path('categories/', views.categories, name = 'categories'),
+    
+    path('categories/<int:category_id>', views.category, name = 'categoty'),
+    
     path('questions/<int:question_id>/', views.question, name = 'question'),
     
     

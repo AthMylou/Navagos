@@ -42,6 +42,13 @@ class QuestionAnswer(models.Model):
     answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
     value = models.BooleanField()
 
+    def __str__(self):
+        return str({
+            'question': str(self.question),
+            'answer': str(self.answer),
+            'value': self.value
+        })
+
 
 class Test(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
