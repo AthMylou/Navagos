@@ -1,17 +1,17 @@
 from django.db import models
 
 # Create your models here.
-class User(models.Model):
-    firstname = models.CharField(max_length = 100)
-    lastname = models.CharField(max_length = 100)
+# class User(models.Model):
+#     firstname = models.CharField(max_length = 100)
+#     lastname = models.CharField(max_length = 100)
 
-    email = models.EmailField(max_length=200)
-    passwd = models.CharField(max_length = 100)
-    age = models.IntegerField(max_length = 3)
+#     email = models.EmailField(max_length=200)
+#     passwd = models.CharField(max_length = 100)
+#     age = models.IntegerField(max_length = 3)
 
-    def __str__(self):
-        fullname =f"{self.firstname} {self.lastname} {self.email}" 
-        return self.fullname
+#     def __str__(self):
+#         fullname =f"{self.firstname} {self.lastname} {self.email}" 
+#         return self.fullname
 
 class Category(models.Model):
     category = models.CharField(max_length=100)
@@ -51,15 +51,15 @@ class QuestionAnswer(models.Model):
 
 
 class Test(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
     test_datetime = models.DateTimeField(auto_now=True)
     correct_answers = models.IntegerField() # The number of correct answers the user provided in the test.
     pass_fail = models.BooleanField()
 
 
     def __str__(self):
-        test_data = f"user: {self.user}, test date: {self.test_datetime}, result: {self.correct_answers}/50 correct answers"
-        return self.test_data
+        test_data = f"test date: {self.test_datetime}, result: {self.correct_answers}/50 correct answers"
+        return test_data
 
 
 class TestQuestion(models.Model):

@@ -1,0 +1,28 @@
+{% extends 'navagos_main/base.html' %}
+
+{% block content %}
+
+<h1>Multiple Choice Test</h1>
+
+
+<form method="post" action="{% url 'navagos_main:submit_test' %}">
+    {% csrf_token %}
+
+    {% for question, answers in question_answers.items %}
+        <fieldset>
+            <legend>{{ question.question_text }}</legend>
+            {% for answer in answers %}
+                <label>
+                    <input type="radio" name="question_{{ question.id }}" value="{{ answer.id }}">
+                    {{ answer.answer_text }}                  
+                </label>
+                <br>
+            {% endfor %}
+        </fieldset>
+        <br>
+    {% endfor %}
+    <button type="submit">Submit</button>
+</form>
+
+
+{% endblock content %}

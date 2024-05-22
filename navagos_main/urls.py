@@ -19,5 +19,11 @@ urlpatterns = [
     
     path('questions/<int:question_id>/', views.question, name = 'question'),
     
+    path('test/', views.test, name='test'),
     
+    path('new_test/', views.new_test, name='new_test'),   
+    
+    path('submit_test/', views.submit_test, name = 'submit_test'),
+    
+   # path('results/', views.results, name='results'),
 ]
