@@ -18,7 +18,7 @@
       {% endif %}
       
       {% if user.is_authenticated %}
-        <a href= "{% url 'navagos_main:categories' %}"> Categories </a> - <a href= "{% url 'navagos_main:questions' %}"> All Questions </a> - <a href= "{% url 'navagos_main:index' %}"> Home </a> - <a href= "{% url 'navagos_main:test' %}"> Take a Test </a> - <a href= "{% url 'navagos_auth_app:logout' %}"> Logout </a>
+        <a href= "{% url 'navagos_main:categories' %}"> Categories </a> - <a href= "{% url 'navagos_main:questions' %}"> All Questions </a> - <a href= "{% url 'navagos_main:index' %}"> Home </a> - <a href= "{% url 'navagos_main:test' %}"> Take a Test </a> - <a href= "{% url 'navagos_auth_app:logout' %}"> Logout </a> - <a href= "{% url 'navagos_main:account' %}"> {{ user.username }} </a>
       {% else %}
        <a href= "{% url 'navagos_main:about' %}"> About </a> - <a href= "{% url 'navagos_main:index' %}"> Home </a> - <a href= "{% url 'navagos_auth_app:login' %}"> Login </a> - <a href= "{% url 'navagos_auth_app:register_user' %}"> Register </a>
       {% endif %}

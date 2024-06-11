@@ -15,7 +15,7 @@ urlpatterns = [
     
     path('categories/', views.categories, name = 'categories'),
     
-    path('categories/<int:category_id>', views.category, name = 'categoty'),
+    path('categories/<int:category_id>/', views.category, name = 'category'),
     
     path('questions/<int:question_id>/', views.question, name = 'question'),
     
@@ -26,4 +26,8 @@ urlpatterns = [
     path('submit_test/', views.submit_test, name = 'submit_test'),
     
     path('results/', views.results, name='results'),
+    
+    path('result/<int:test_id>/', views.result, name = 'result'),
+    
+    path('account/', views.show_acc_details, name='account')
 ]

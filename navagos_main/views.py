@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
 
-from .models import Question, Answer, QuestionAnswer, Category, Test, TestQuestion
+from .models import Question, Answer, QuestionAnswer, Category, Test, TestQuestion, User
 from .random_test import create_test
 
 # Create your views here.
@@ -135,17 +135,44 @@ def results(request):
             'correct_answer': correct_answer.answer.answer_text if correct_answer else 'No correct answer'
         }
         
-        question_data.append(question_info)
-        
-    
-    
-  
+        question_data.append(question_info)  
 
     context = {'latest_test': latest_test, 'question_data': question_data}
     return render(request, 'navagos_main/results.html', context)
 
-
+def show_acc_details(request):
+    """Shows the account page"""
+    user = request.user
+    user_tests = Test.objects.filter(user = user)
+    passing_tests = Test.objects.filter(user = user) if Test.pass_fail == True else None
     
+    context = {'user': user, 'user_tests': user_tests, 'passing_tests': passing_tests}
+    return render(request, 'navagos_main/show_acc_details.html', context)
+
+#def test_results for each test of the user by test_id 
+def result(request, test_id):
+    """fetches the results of a previous test"""
+    test = Test.objects.get(id = test_id)
+    
+    test_questions = TestQuestion.objects.filter(test = test).select_related('question','chosen_answer')
+        
+    #Stores the questions, the chosen and the correct answer for each
+    question_data = []
+    
+    for test_question in test_questions:
+        correct_answer = QuestionAnswer.objects.filter(question=test_question.question, value=True).first()
+        
+        question_info = {
+            'question_text': test_question.question.question_text,
+            'chosen_answer': test_question.chosen_answer.answer_text if test_question.chosen_answer else 'No answer selected',
+            'correct_answer': correct_answer.answer.answer_text if correct_answer else 'No correct answer'
+        }
+        
+        question_data.append(question_info)
+    
+    context = {'test': test, 'test_id': test_id, 'question_data': question_data}
+    return render(request, 'navagos_main/result.html', context)
+
 
     
 def about(request):

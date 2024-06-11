@@ -1,0 +1,30 @@
+{% extends 'navagos_main/base.html' %}
+
+{% block content %}
+
+<h1>Account Details</h1>
+
+    <h2>User Information</h2>
+    <p><strong>{{ user.get_full_name }}</strong></p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Username:</strong> {{ user.username }}</p>
+
+    <p>You have taken {{ user_tests|length }} tests </p>
+    <p>You have passed {{ passing_tests|length }} tests </p>
+
+    <h2>Your Tests</h2>
+    <ul>
+        {% for test in user_tests %}
+            <li>
+                <p><strong>Test Date:</strong> {{ test.test_datetime }}</p>
+                <p><strong>Correct Answers:</strong> {{ test.correct_answers }}</p>
+                <p><strong>Result:</strong> {{ test.pass_fail|yesno:"Pass,Fail" }}</p>
+                <a href= "{% url 'navagos_main:result' test.id %}"> Review this test</a>
+            </li>
+            <br/>
+            -----------------------------------------------------
+        {% endfor %}
+    </ul>
+    
+
+{% endblock content %}
