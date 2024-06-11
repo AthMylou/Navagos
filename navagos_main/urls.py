@@ -25,5 +25,5 @@ urlpatterns = [
     
     path('submit_test/', views.submit_test, name = 'submit_test'),
     
-   # path('results/', views.results, name='results'),
+    path('results/', views.results, name='results'),
 ]

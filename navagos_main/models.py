@@ -1,17 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
-# class User(models.Model):
-#     firstname = models.CharField(max_length = 100)
-#     lastname = models.CharField(max_length = 100)
 
-#     email = models.EmailField(max_length=200)
-#     passwd = models.CharField(max_length = 100)
-#     age = models.IntegerField(max_length = 3)
-
-#     def __str__(self):
-#         fullname =f"{self.firstname} {self.lastname} {self.email}" 
-#         return self.fullname
 
 class Category(models.Model):
     category = models.CharField(max_length=100)
@@ -51,8 +42,8 @@ class QuestionAnswer(models.Model):
 
 
 class Test(models.Model):
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
-    test_datetime = models.DateTimeField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    test_datetime = models.DateTimeField(auto_now_add=True)
     correct_answers = models.IntegerField() # The number of correct answers the user provided in the test.
     pass_fail = models.BooleanField()
 
@@ -65,5 +56,6 @@ class Test(models.Model):
 class TestQuestion(models.Model):
     test = models.ForeignKey(Test, on_delete=models.CASCADE, default=None)
     question = models.ForeignKey(Question, on_delete=models.CASCADE, default=None)
+    chosen_answer = models.ForeignKey(Answer, on_delete=models.CASCADE, default=None)
     answered_correctly = models.BooleanField()
 

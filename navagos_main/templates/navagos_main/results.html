@@ -1,0 +1,32 @@
+{% extends 'navagos_main/base.html' %}
+
+{% block content %}
+
+{% if latest_test %}
+    <h1>Test Results</h1>
+    <p>Date: {{ latest_test.test_datetime }}</p>
+    <p>Correct choices: {{ latest_test.correct_answers }}/50</p>
+    {% if latest_test.pass_fail == True %}
+        <p>You have succcessfully passed the test</p>
+    {% else %}
+        <p>You have failed the test</p>
+        <p>Study harder and try again.</p>
+    {% endif %}
+
+    <h2>Questions</h2>
+    <ul>
+    {% for question in question_data %}
+        <li>
+            <strong>Question:</strong> {{ question.question_text }}<br>
+            <strong>Chosen Answer:</strong> {{ question.chosen_answer }}<br>
+            <strong>Correct Answer: {{ question.correct_answer }}</strong><br>
+            <br>
+        </li>
+    {% endfor %}
+    </ul>
+        
+
+{% else %}
+    <p>{{ message }}</p>
+{% endif %}
+{% endblock content %}
