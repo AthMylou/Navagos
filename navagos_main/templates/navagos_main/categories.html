@@ -2,18 +2,24 @@
 
 {% block content %}
 
-<p>Categories</p>
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">ΚΑΤΗΓΟΡΙΕΣ</h1>
 
-<ul>
-    {% for category in categories %}
-        <li>
-            <a href="{{ category.id }}">{{ category }}</a>
+    <ul class="list-group list-group-flush">
+      {% for category in categories %}
+        <li class="list-group-item">
+          <a href="{{ category.id }}" class="text-decoration-none text-dark">
+            {{ category }}
+          </a>
         </li>
-        {% empty %}
-            <li>
-                No categories have been added yet.
-            </li>
-    {% endfor %}
-</ul>
+      {% empty %}
+        <li class="list-group-item">
+          No categories have been added yet.
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
 
 {% endblock content %}

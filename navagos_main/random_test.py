@@ -17,16 +17,10 @@ def create_test():
     random_questions = []
     categories = Category.objects.order_by("id")
 
-    for category in categories:
-        while len(random_questions) < 50:
+    while len(random_questions) < 50:
+        for category in categories:
             random_questions.extend(random.choices(Question.objects.filter(category = category), k=random.randint(1,4)))
             
-            random_questions = random_questions[:50]
+    random_questions = random_questions[:51]
     
     return random_questions    
-
-test = create_test()
-
-
-
-

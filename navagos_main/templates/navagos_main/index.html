@@ -1,6 +1,45 @@
-{% extends "navagos_main/base.html" %}
+{% extends 'navagos_main/base.html' %}
 
 {% block content %}
-    <h1>Welcome {{ user.username }}</h1>
-    <p>Navagos is is a lifeguards training app.</p>
+
+{% if user.is_authenticated %}
+
+    <div class="jumbotron jumbotron-fluid bg-light text-dark">
+        <div class="container-fluid text-center">
+            <h1 class="display-4">Καλώς ήρθατε στo Navagos!</h1>
+            <p class="lead">Καλώς ήρθατε στο Navagos! Mια εκπαιδευτική πλατφόρμα που στοχεύει να προσφέρει εκπαιδευτικό υλικό και test για υποψήφιους ναυαγοσώστες.</p>
+        </div>
+    </div>
+
+
+
+{% else %}
+    
+
+    <div class="container-fluid text-center">
+        <div class="jumbotron jumbotron-fluid bg-light text-dark">
+                <h1 class="display-4">Καλώς ήρθατε στo Navagos!</h1>
+                <p class="lead">Καλώς ήρθατε στο Navagos! Mια εκπαιδευτική πλατφόρμα που στοχεύει να προσφέρει εκπαιδευτικό υλικό και test για υποψήφιους ναυαγοσώστες.</p>
+            
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Ποιοί είμαστε</h2>
+                        <p>Μάθετε περισσότερα για εμάς.</p>
+                        <a class="btn btn-secondary" href="{% url 'navagos_main:about' %}" role="button">Μάθετε περισσότερα &raquo;</a>
+                    </div>
+        
+                    <div class="col-md-4">
+                        <h2>Εγγραφή / Σύνδεση</h2>
+                        <a class="btn btn-secondary" href="{% url 'navagos_auth_app:register_user' %}" role="button">Εγγραφή  &raquo;</a>
+                        <a class="btn btn-secondary" href="{% url 'navagos_auth_app:login' %}" role="button">Σύνδεση &raquo;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+
 {% endblock content %}

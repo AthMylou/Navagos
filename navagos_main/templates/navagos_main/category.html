@@ -2,21 +2,27 @@
 
 {% block content %}
 
-<p>Category: {{ category }}</p>
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">ΚΑΤΗΓΟΡΙΑ:
+    </br> {{ category }}</h1>
 
-<p>Questions:</p>
+    <h2 class="mt-4">Ερωτήσεις:</h2>
 
-<br/>
-
-<ul>
-    {% for question in category_questions %}
-        <li>
-            <a href=" {% url 'navagos_main:question' question.id %}">{{ question }}</a>
+    <ul class="list-group list-group-flush">
+      {% for question in category_questions %}
+        <li class="list-group-item">
+          <a href="{% url 'navagos_main:question' question.id %}" class="text-decoration-none text-dark">
+            {{ question }}
+          </a>
         </li>
-        {% empty %}
-            <li>
-                No questions have been added yet.
-            </li>
-    {% endfor %}
-</ul>
+      {% empty %}
+        <li class="list-group-item">
+          No questions have been added yet.
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
 {% endblock content %}

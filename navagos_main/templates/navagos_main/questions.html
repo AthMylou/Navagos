@@ -2,18 +2,24 @@
 
 {% block content %}
 
-<p>Questions</p>
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">Όλες Οι Ερωτήσεις</h1>
 
-<ul>
-    {% for question in questions %}
-        <li>
-            <a href="{{ question.id }}">{{ question }}</a>
+    <ul class="list-group list-group-flush">
+      {% for question in questions %}
+        <li class="list-group-item">
+          <a href="{% url 'navagos_main:question' question.id %}" class="text-decoration-none text-dark">
+            {{ question }}
+          </a>
         </li>
-        {% empty %}
-            <li>
-                No questions have been added yet.
-            </li>
-    {% endfor %}
-</ul>
+      {% empty %}
+        <li class="list-group-item">
+          No questions have been added yet.
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
 
 {% endblock content %}

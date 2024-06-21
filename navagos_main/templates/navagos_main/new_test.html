@@ -2,27 +2,31 @@
 
 {% block content %}
 
-<h1>Multiple Choice Test</h1>
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">Multiple Choice Test</h1>
 
+    <form method="post" action="{% url 'navagos_main:submit_test' %}">
+      {% csrf_token %}
 
-<form method="post" action="{% url 'navagos_main:submit_test' %}">
-    {% csrf_token %}
-
-    {% for question, answers in question_answers.items %}
+      {% for question, answers in question_answers.items %}
         <fieldset>
-            <legend>{{ question.question_text }}</legend>
-            {% for answer in answers %}
-                <label>
-                    <input type="radio" name="question_{{ question.id }}" value="{{ answer.id }}">
-                    {{ answer.answer_text }}                  
-                </label>
-                <br>
-            {% endfor %}
+          <legend>{{ question.question_text }}</legend>
+          {% for answer in answers %}
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="question_{{ question.id }}" id="answer_{{ answer.id }}" value="{{ answer.id }}">
+              <label class="form-check-label" for="answer_{{ answer.id }}">
+                {{ answer.answer_text }}
+              </label>
+            </div>
+          {% endfor %}
         </fieldset>
         <br>
-    {% endfor %}
-    <button type="submit">Submit</button>
-</form>
-
+      {% endfor %}
+      
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+</div>
 
 {% endblock content %}

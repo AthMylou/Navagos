@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('navagos_main.urls')),
     path('login/', include('navagos_auth_app.urls')),
     path('login/', include('django.contrib.auth.urls')),
+    path('api/', include('navagos_main.api.urls'))
 ]
