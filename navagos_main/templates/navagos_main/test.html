@@ -2,10 +2,14 @@
 
 {% block content %}
 
-<h1>Take a test</h1>
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">Take a Test</h1>
 
-<p><a href= "{% url 'navagos_main:new_test' %}">Click here to take a new test</a></p>
-
-
+    <p class="card-text">
+      <a href="{% url 'navagos_main:new_test' %}" class="btn btn-primary">Click here to take a new test</a>
+    </p>
+  </div>
+</div>
 
 {% endblock content %}

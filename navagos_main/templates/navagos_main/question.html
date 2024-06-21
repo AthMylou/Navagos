@@ -2,23 +2,29 @@
 
 {% block content %}
 
-<h1>Question:</h1> {{ question }}
+<div class="card">
+  <div class="card-body">
+    <h1 class="card-title">Ερώτηση:</h1>
+    <p class="card-text">{{ question }}</p>
 
-<h2>Answers:</h2>
+    <h2 class="mt-4">Απαντήσεις:</h2>
 
-<br/>
-
-<ul>
-    {% for answer in answers %}
-        <li>
-            {{ answer }}
+    <ul class="list-group list-group-flush">
+      {% for answer in answers %}
+        <li class="list-group-item">
+          {{ answer }}
         </li>
-        {% empty %}
-            <li>
-                No answers have been added yet.
-            </li>
-    {% endfor %}
-</ul>
-<br/>
-<h3>Correct Answer:</h3> {{ correct_answer }}
+      {% empty %}
+        <li class="list-group-item">
+          No answers have been added yet.
+        </li>
+      {% endfor %}
+    </ul>
+
+    <br/>
+    <h3 class="mt-4">Σωστή Απάντηση:</h3>
+    <p>{{ correct_answer }}</p>
+  </div>
+</div>
+
 {% endblock content %}

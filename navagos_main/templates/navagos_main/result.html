@@ -2,31 +2,33 @@
 
 {% block content %}
 
-{% if test %}
-    <h1>Test Results</h1>
-    <p>Date: {{ test.test_datetime }}</p>
-    <p>Correct choices: {{ test.correct_answers }}/50</p>
-    {% if test.pass_fail == True %}
-        <p>You have succcessfully passed the test</p>
-    {% else %}
-        <p>You have failed the test</p>
-        <p>Study harder and try again.</p>
-    {% endif %}
+<div class="card">
+  <div class="card-body">
+    {% if test %}
+      <h1 class="card-title">Test Results</h1>
+      <p>Date: {{ test.test_datetime }}</p>
+      <p>Correct choices: {{ test.correct_answers }}/50</p>
+      
+        {% if test.pass_fail %}
+            <p class="text-success">Επιτυχία</p>
+        {% else %}
+            <p class="text-danger">Αποτυχία</p>
+        {% endif %}
 
-    <h2>Questions</h2>
-    <ul>
-    {% for question in question_data %}
-        <li>
+      <h2>Questions</h2>
+      <ul class="list-group">
+        {% for question in question_data %}
+          <li class="list-group-item">
             <strong>Question:</strong> {{ question.question_text }}<br>
             <strong>Chosen Answer:</strong> {{ question.chosen_answer }}<br>
-            <strong>Correct Answer: {{ question.correct_answer }}</strong><br>
-            <br>
-        </li>
-    {% endfor %}
-    </ul>
-        
+            <strong>Correct Answer:</strong> {{ question.correct_answer }}<br>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>The test you are looking for does not exist.</p>
+    {% endif %}
+  </div>
+</div>
 
-{% else %}
-    <p>the test you are looking for does not exist</p>
-{% endif %}
 {% endblock content %}
